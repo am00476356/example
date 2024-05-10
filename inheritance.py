@@ -108,3 +108,5 @@ class C1(P2):
 c1 = C1()
 # print(C1.__mro__)
 print(c1.attrib)
+
+# parent has init and child has init.
