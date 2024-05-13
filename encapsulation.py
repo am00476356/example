@@ -49,7 +49,7 @@ When done via init --> object creation is protected but later can be modified.
 
 Issue 3 : deletion of attributes should be controlled.
 
-
+Phenomenon
 Getter-Setter-Deleter
 """
 class SignUp:
@@ -106,14 +106,66 @@ _logic1()
 _logic2()
 _logic3()
 """
+#
+# class A:
+#     foo = "FOO"
+#     _hello = "Hello"
+#     __world = "WORLD"
+#
+# a = A()
+# print(a.foo)
+# print(a._hello)
+# # print(a.__world)
+# print(dir(a))
+
+"""
+public, private and protected is not a concept very well taken by Python as a language.
+
+public --> for end user it is open and manipulation is allowed.
+private --> for INTERNAL users/ developer.
+    * segregation
+    * I don't want to show everything into public method. - Clean
+    * Contains sensitive information and shouldn't be touched by others.
+protected --> If this changes the behaviour of whole application might change.
+    * V V IMP
+    * it has a very limited usage
+    
+    
+- any normal name is public.
+- anything that starts with _ is considered to be private/ for internal use only.
+    + is there any change in behaviour of public/private. --> NO
+    + It is not by code but it is common knowledge among standard.
+- anything that starts with __ is protected. Or it is for the given class only.
+
+`Name Mangling`
+Python internally anything inside class which is defined with __VarName as prefix.
+It changes its name to _ClassName__VarName
+
+"""
+
 
 class A:
-    foo = "FOO"
-    _hello = "Hello"
-    __world = "WORLD"
+    foo = 10
+    _bar = 100
+    __baz = 1000
 
-a =A()
+    def sample(self):
+        print(self.__baz)
+
+    def __gujarat(self):
+        pass
+
+
+class B(A):
+    pass
+
+
+a = A()
 print(a.foo)
-print(a._hello)
-# print(a.__world)
+print(a._bar)
+# print(a._A__baz)
 print(dir(a))
+a.sample()
+### Inheritance
+b = B()
+print(dir(b))
