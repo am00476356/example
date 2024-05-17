@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class Template(ABC):
 
-    @abstractmethod
+    @abstractmethod # implement_me = abstractmethod(implement)
     def implement_me(self):
         pass
 
