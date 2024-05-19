@@ -59,13 +59,13 @@ def sub(a, b, c):
 # <function adder at 0x000001BCEB1DEB00>
 # 3
 
-def delay(func):
-    """Delays the functionality by 5 secs"""
-    def wrapper(*args, **kwargs):
-        import time
-        time.sleep(5)  # Need to have this as dynamic value
-        return func(*args, **kwargs)
-    return wrapper
+# def delay(func):
+#     """Delays the functionality by 5 secs"""
+#     def wrapper(*args, **kwargs):
+#         import time
+#         time.sleep(5)  # Need to have this as dynamic value
+#         return func(*args, **kwargs)
+#     return wrapper
 
 
 # def delay(func): # delay(greet)
@@ -78,14 +78,79 @@ def delay(func):
 #                      that is the function holding both additional and basic functionality
 
 
-@delay  # greet = delay(greet) # greet = wrapper(*args, **kwargs)
-def greet(name):
-    print(f'Hello {name}')
+# @delay  # greet = delay(greet) # greet = wrapper(*args, **kwargs)
+# def greet(name):
+#     print(f'Hello {name}')
 
 
-greet("Dhoni")
+# greet("Dhoni")
 
 
 # Now I need to get rid of constant 5 secs of delay but
 # it should be parameterized in a fashion that when
 # I pass any time the delay should be of that much time
+
+# PARAMETERIZED DECORATOR
+
+def delay(n):
+    """Delays the functionality by n secs"""
+    def outer(func):
+        def wrapper(*args, **kwargs):
+            import time
+            time.sleep(n)  # Need to have this as dynamic value
+            return func(*args, **kwargs)
+        return wrapper
+    return outer
+
+@delay(1) # greet = delay(1) => outer(greet) => wrapper(name) => greet(name)
+def greet(name):
+    print(f"Hello {name}")
+
+@delay(5)
+def meet(name):
+    print(f"Meeting with {name}")
+
+# greet("World")
+# meet("Foo")
+
+
+# define a function that takes two numbers as input
+# subtract it and return the positive difference.
+
+
+# def sub(a, b):
+#     return a-b
+
+
+# Write a decorator to execute a function for three times
+
+# def do_thrice(func):
+#     def wrapper(*args, **kwargs):
+#         func(*args, **kwargs)
+#         func(*args, **kwargs)
+#         func(*args, **kwargs)
+#     return wrapper
+
+def re_doer(times):
+    def re_doer_inner(func):
+        def wrapper(*args, **kwargs):
+            for _ in range(times):
+                func(*args, **kwargs)
+        return wrapper
+    return re_doer_inner
+
+
+@re_doer(2)
+def sub(a, b):
+    print(a-b)
+    return a-b
+
+
+@re_doer(5)
+def greet(name):
+    print(f"Hello {name}!")
+
+sub(8, 2)
+greet("Foo Bar")
+
+# re_doer() parameterized function caller
