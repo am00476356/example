@@ -23,12 +23,14 @@ Staticmethod, classmethod, property
     but the method is independent of object.
 
 2. classmethod
-
+    Methods that take first argument as 'cls'--> class reference
+    They are deorated with @classmethod.
+    One of the Use case is :
+        multiple decorators :: `OrderAtHotel`
 
 3. property
-
-
-
+makes a method to 'act' like an attribute
+Useful in chaining mostly.
 """
 
 # class MathematicalModel:
@@ -73,6 +75,6 @@ class Browsers:
         print(f"open firefox made by {self.firefox}")
 
 
-browser = Browsers()
-browser.open_chrome # open chrome
-# print(browser.firefox)
+# browser = Browsers()
+# browser.open_chrome # open chrome
+# # print(browser.firefox)
