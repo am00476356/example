@@ -9,7 +9,7 @@
 
 # duck type --> on the go data type identify
 # class which contains everything(functionalities) is called str
-# comments
+# commentss
 
 statement = """Hello
             World"""
